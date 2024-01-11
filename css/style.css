@@ -1,0 +1,273 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+/* reset */
+ul,ol,li {
+    list-style: none;
+}
+a {
+    color: #333;
+    text-decoration: none;   /* 밑줄삭제 */
+}
+
+.clear::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+/* layout */
+#wrap {
+    width: 1000px;
+    margin: 0 auto;
+}
+/* header */
+#header {}
+#header h1 {
+    float: left;
+    width: 110px;
+    padding-top: 15px;
+}
+/* inline요소 안에는 block요소가 들어가지 않음
+   block요소 안에는 inline요소, block요소 모두 들어간다. */
+#header h1 a {}
+#header h1 a img {
+    width: 100%;
+}
+
+#header .nav {
+    float: right;
+    background-color: #ddd;
+}
+#header .nav ul {}
+#header .nav ul li {
+    position: relative;
+    float: left;
+    width: 140px;
+    text-align: center;
+}
+#header .nav ul li a {
+    display: block;
+    padding: 24px 20px 20px;
+    transition: 0.3s;
+}
+#header .nav ul li a:hover {
+    background-color: #ccc;
+}
+
+#header .nav ul li .submenu {
+    position: absolute;
+    left: 0;
+    top: 67px;
+    display: none;
+    z-index: 10;  /* >>position이 있어야 실행가능 */
+}
+#header .nav ul li .submenu li {}
+#header .nav ul li .submenu li a {
+    background-color: #888;
+    padding: 10px;
+    color: #fff;
+}
+#header .nav ul li .submenu li a:hover {
+    background-color: #666;
+}
+
+
+/* banner */
+#banner {
+    overflow: hidden;
+}
+#banner .slidelist {
+    width: 3000px;
+    position: relative;
+}
+#banner .slidelist .slideImg {
+    position: relative;
+    float: left;
+    width: 1000px;
+}
+#banner .slidelist .slideImg h2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgb(0,0,0,.4);   /* >>마지막 .4 = 0.4 같은의미 */
+    padding: 10px 30px;
+    border-radius: 20px;
+    color: #fff;
+}
+#banner .slidelist .slideImg img {
+    width: 100%;
+    /* img태그에 아래쪽 빈틈이 생기는 이유 -->인라인요소이기 때문이다
+    해결방법
+    1) display: block;
+    2)vertical-allign: top; */
+    vertical-align: top;
+}
+
+/* content1 */
+#content1 {
+    margin-top: 20px;
+}
+#content1 .left {
+    float: left;
+    width: 49%;
+    /* background-color: #f2f2f2;
+    background-image: url(../img/bg1.jpg);
+    background-repeat: no-repeat;
+    background-size: 80px;
+    background-position: x값 y값;
+    background-position: right 20px center; */
+    padding: 20px;
+    box-sizing: border-box;
+
+    /* background: bg-color bg-image position/bg-size bg-repeat; */
+    background: #f2f2f2 url(../img/bg1.jpg) /* right 20px center/80px */ no-repeat;
+    background-position: right 20px center;
+    background-size: 80px;
+}
+#content1 .right {
+    float: right;
+    width: 49%;
+    background: #f2f2f2 url(../img/bg2.jpg) no-repeat right 20px center;
+    background-size: 80px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+#content1 .title {
+    font-size: 22px;
+    padding-bottom: 5px;
+}
+#content1 .desc {
+    font-size: 14px;
+    color: #666;
+    padding-bottom: 15px;
+}
+#content1 .left .btn {
+    background: url(../img/icon1.jpg) no-repeat left center;
+    background-size: 20px;
+    padding-left: 25px;
+}
+#content1 .right .btn {
+    background: url(../img/icon2.jpg) no-repeat left center;
+    background-size: 20px;
+    padding-left: 25px;
+}
+#content1 .right .btn em {
+    /* 강조하기 위한 태그들(인라인 요소)
+    🍰 b태그, strong태그
+    같아보이지만 다른 태그이다.
+    b태그는 글자를 굵게만 만들지만
+    strong태그는 그 내용이 중요하다는 의미 또한 담고 있다.
+    🧁i태그, em태그
+    둘 다 글자를 기울이지만, i태그와 달리
+    em태그는 강조하는 역할을 합니다.  */
+}
+
+
+
+
+/* layer-bg */
+.layer-bg {
+    position: fixed;
+    left: 0; right: 0; top: 0; bottom: 0;
+    /* width: 100%; height: 100%; △같은 의미 */
+    background-color: rgba(0,0,0,.8);
+    display: none;
+}
+.layer-bg .layer {
+    position: absolute;
+    left: calc(50% - 250px);
+    top: calc(50% - 250px);
+    background-color: #fff;
+    padding: 20px;
+    width: 500px;
+    height: 500px;
+}
+.layer-bg .layer h2 {}
+.layer-bg .layer .close {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+
+/* content2 */
+#content2 {
+    margin-top: 30px;
+}
+.tab_menu {}
+.tab_menu ul {}
+.tab_menu ul li {
+    float: left;
+    /* float으로 인한 부모의 영역 깨짐 막기
+    1) clear: both;
+    2) overflow: hidden;
+    3) 부모에게 높이값을 강제로 주기 */
+    margin-right: 15px;
+}
+.tab_menu ul li a {
+    font-size: 24px;
+    display: block;
+    padding-bottom: 10px;
+    color: #999;
+}
+.tab_menu ul li.active a {
+    color: #000;
+    font-weight: bold;
+}
+
+.tab_cont {}
+.tab_cont>div {
+    overflow: hidden;
+}
+.tab_cont>div figure {
+    float: left;
+    width: 32%;
+    margin-right: 2%;
+}
+.tab_cont>div figure:last-child {
+    margin-right: 0;
+}
+/* :first-child 첫째를 부르는 방법
+   :nth-child(2) 둘째를 부르는 방법
+   :last-child 셋재를 부르는 방법 */
+.tab_cont>div figure img {
+    width: 100%;
+}
+.tab_cont>div figure figcaption {}
+
+/* footer */
+#footer {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #202020;
+}
+#footer h2 {
+    float: left;
+    width: 150px;
+}
+#footer h2 img {
+    width: 100%;
+}
+
+#footer .foot {
+    float: right;
+}
+#footer .foot ul {
+    padding-bottom: 10px;
+}
+#footer .foot ul li {
+    display: inline;
+}
+#footer .foot ul li a {
+    color: #fff;
+}
+
+#footer .foot address {
+    color: #ccc;
+    font-style: normal;
+}
